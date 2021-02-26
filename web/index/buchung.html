@@ -1,0 +1,288 @@
+<html>
+
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta name="viewport" content="width=device-width" />
+
+  <title>Travelers-Blog</title>
+
+ <style type="text/css">
+
+
+
+body {
+
+      background: #aFEEEE ;
+      line-height: 1.3;
+      font-family: sans-serif;
+      font-size: 100%;
+
+}
+
+
+
+
+#Gesamt {
+	  overflow: hidden;
+    background: #FFE4C4;
+	  margin-left: auto;
+	  position: absolute;
+	  left: 115px;
+	  right: 115px;
+	  margin-right: auto;
+	  border: black;
+	  border-radius: 1px;
+	  max-width: 950px;
+
+}
+
+.kopf {
+      //*background-color: #ccf696;*//
+      color: white;
+	  padding: 1%;
+	  text-align:center;
+
+}
+
+
+
+
+.inhalt {
+  //*background-color: #fff;*//
+		padding: 1%;
+		border-left: #060 solid 0px;
+		border-top: #060 solid 0px;
+		border-bottom: #060 solid 0px;
+		hyphens: auto;
+		text-align: justify;
+  		float: left;
+ 		width: 63%;
+
+}
+
+
+
+a:link, a:visited {
+text-decoration: none;
+color:black;
+}
+
+
+a:hover{
+
+}
+
+
+img {
+	max-width: 100%;
+	height: auto;
+
+}
+
+
+.navigation li {
+	    display: none;
+	    list-style: none;
+}
+
+.sprung {
+	    display:block;
+		text-align:center;
+		height: 1.5em;
+		color: #33500e;
+		overflow:hidden;
+}
+
+
+.sprung:hover {
+	    height: 3em;
+		color: #ccf696 ;
+		padding-top: 10px;
+		transition: 0.5s;
+}
+
+
+.sprung a{
+	padding-right: 25px;
+	min-width: 500px;
+}
+
+
+
+
+@media screen and (min-width: 500px) {
+	  .sprung, .sprung:hover {
+		overflow: visible;
+		transition:none;
+		padding-top: 0;
+    	height: 0px;
+		text-align:left;
+    	font-size: 0;
+
+	}
+
+
+	  .navigation {
+		display: block;
+		font-size: 1em;
+    	float: left;
+   		width: 26%;
+    	padding: 2%;
+
+
+       }
+
+
+	  .inhalt {
+		  border-left: 0px;
+
+      }
+	  .navigation ul {
+	    padding-left: 6%;
+	  }
+	  .navigation li {
+      text-align: center;
+	    display: list-item;
+		list-style-position:inside;
+		font-size: 18px;
+		padding: 5% 0 0 1%;
+		color: #33500e;
+   		list-style-type: circle;
+    	border-bottom: 2px #000;
+    	text-decoration: none;
+
+	  }
+
+}
+
+
+
+@media print {
+	#Gesamt {
+
+		padding: 10px;
+	}
+
+
+	img {
+		width:30%;
+
+
+	}
+
+	.sprung, .navigation, #rollover {
+		display: none;
+	}
+
+}
+
+
+form {
+  width: 400px; 
+  padding: 10px;
+  margin: 0 auto;
+  border: 1px solid #8c8c8c;
+}
+
+
+label { 
+  display: block;
+
+}
+
+input#Name_U,
+input#mail,
+select,
+textarea
+
+ {
+  width: 300px;
+  margin-bottom: 1em;
+  border: 1px solid #8c8c8c;
+}
+
+//*tr{
+   color: black;
+ }*//
+
+ </style>
+
+</head>
+<body>
+ <div id="Gesamt">
+
+   <div class="kopf">
+
+
+   <img src="Titel.jpg" width="550px" height="100px"/></div>
+
+   <div class="sprung">
+   	<h3>Menü</h3>
+    <p />
+        <div class="navigation" >
+          <ul>
+
+
+          <li><a href="index_travelers.html">Startseite</a></li>
+          <li><a href="mexico.html">Mexiko</a></li>
+		       <li><a href="mauritius.html">Mauritius</a></li>
+		       <li><a href="borabora.html">Bora Bora</a></li>
+          <li><a href="buchung.html">Termine</a></li>
+
+         </ul>
+       </div>
+   </div>
+
+
+   <div class="inhalt">
+
+
+            <form id="anmeldung" action="#" method="post">
+            <div>
+              <label for="Buchung">Name<sup>*</sup>:</label>
+              <input type="text" id="Name_U" name="Name_U" required placeholder="Bitte Vor- und Nachname">
+            </div>
+            <div>
+              <label for="mail">E-Mail-Adresse<sup>*</sup>:</label>
+              <input type="email" id="mail" name="besuchermail" placeholder="Bsp.: Muster@online.de">
+            </div>
+
+            <div>
+                <label for="Buchung">Online-Meeting für Infomationen über:<sup>*</sup></label>
+                <select id="Buchung" required>
+					<option>Bitte auswählen</option>
+					<option>Mexiko</option>
+					<option>Mauritius</option>
+					<option>Bora - Bora</option>
+                </select>
+  				</div>
+
+          <div>
+              <label for="Buchung">Wochentag:<sup>*</sup></label>
+              <select id="Buchung" required>
+        <option>Bitte auswählen</option>
+        <option>Montag</option>
+        <option>Dienstag</option>
+        <option>Mittwoch</option>
+        <option>Donnerstag</option>
+        <option>Freitags</option>
+        <option>Samstags</option>
+              </select>
+        </div>
+
+             <div>
+              <label for="nachricht">Ihre Nachricht:</label>
+              <textarea id="nachricht" name="nachricht" cols="20" rows="3"></textarea>
+            </div>
+
+          <div>
+              <input type="submit" value="Abschicken">
+
+            </div>
+            </form>
+   </div>
+
+ </div>
+
+</body>
+</html>
