@@ -1,63 +1,67 @@
-<html>
-	<head>
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <title>Kostenfunktion</title>
+ 
+    <script>
+ 
+        function Rechne() {
+ 
+            var vkv = parseFloat      (document.getElementById("idkv").value);
+            var vkf = parseFloat      (document.getElementById("idkf").value);
+            var vstart = parseFloat   (document.getElementById("idstart").value);
+            var vend = parseFloat     (document.getElementById("idend").value);
+            var vschritt = parseFloat (document.getElementById("idschritt").value);
+ 
+            var vKostenfunktion;
+ 
+            var vausgabe = "";
+ 
+            vausgabe = vausgabe + "<table border = 1> <br>";
+            vausgabe = vausgabe + "<tr><th>x</th><th>K(x)</th></tr>";
+ 
+            while (vstart <= vend) {
+ 
+                bKostenfunktion = vkv * vstart + vkf;
+ 
+                ausgabe = vausgabe + "<tr><td>" + vstart + "</td><td>" + vKostenfunktion + "</td></tr>";
+ 
+                vstart = vstart + vschritt;
+            
+            }
+ 
+            vausgabe = vausgabe + "</table>" + "<br>";
+            document.getElementById("idausgabe").innerHTML = vausgabe;
+ 
+}
+    </script>
+ 
+</head>
+ 
+<body>
+    
+    Variable Kosten: <input id="idkv" type="text" value="">       <br>
+    fixe Kosten: <input id="idkf" type="text" value="">           <br>
+    Startwert: <input id="idstart" type="text" value="">          <br>
+    Endwert: <input id="idend" type="text" value="">              <br>
+    Schrittweite: <input id="idschritt" type="text" value="">     <br> <br>
+ 
+    <button onclick="fRechne()">berechne</button>           <br>
+ 
+    <div id="idausgabe"></div>
 
-		<title>Kostenfunktion</title>
 
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<script>
 
-			"use strict";
-function fKostenfunktion() {
-				
-				var vkf; //*fixe Kosten*//
-				var vx;  //*x*//
-        var vkv; //*variable Kosten*//
-				var vKx; //*K von x*//
-				var vStart = -10;
-				var vAusgabe = "";
-				var vEndwert = 10;
-				
-				vStart = document.getElementById("idStart").value;
-				vEndwert = document.getElementById("idEndwert").value;
-				vkv = document.getElementById("idKv").value;
-				vkf = document.getElementById("idKf").value;
 
-				vAusgabe = vAusgabe + "<table border=1>";
-        vAusgabe = vAusgabe + "<tr><th>x</th><th>K(x)</th></tr>";
-				
-				vKx = vkv * vx + vkf;
-				
-				while (vStart<=vEndwert){
-					
-					vKx = vkv * vx + vkf;
-				
-					vAusgabe = vAusgabe+ "<td>"+vx+"</td>" + "<td>"+vKx+"</td>";
-					
-           vkv++
-				}			
-				
-				vAusgabe = vAusgabe + "</table>";
-				
-				document.getElementById("idAusgabe").innerHTML = vAusgabe;
-				
-			}
-     
-   	</script>
 
-	</head>
-  
-  	<body>
+ 
+</body>
 
-		<h1>Kostenfunktion</h1>
-		
-		Start: <input id="idStart" type="text" value="-10" maxlength="100" size="5"><br><br>
-		Ende: <input id="idEndwert" type="text" value="10" maxlength="100" size="5"><br><br>
-   		Kostenvariable: <input id="idKv" type="text" value="2" maxlength="100" size="5"><br><br>
-		Fixe Kosten: <input id="idKf" type="text" value="20" maxlength="100" size="5"><br><br>
-      
-		<button onClick="fKostenfunktion();">Kostenfunktion berechnen!</button>
-		<div id="idAusgabe"></div>
 
-	</body>
-
+ 
 </html>
