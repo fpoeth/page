@@ -17,8 +17,6 @@
             var gesamtkosten;
             var ek;
             var ausgabe = "";
-          
-            ek = sk * (1 + zs/100);
  
             ausgabe = ausgabe + "<table border=1>";
             ausgabe = ausgabe + "<tr><th>Jahr</th><th>Kapital am 1.1.</th><th>Kapital am 31.12.</th></tr>";
@@ -31,6 +29,8 @@
             }
  
             ausgabe = ausgabe + "</table>";
+            
+            ek = sk * (1 + zs/100);
             
             document.getElementById("ausgabe").innerHTML = ausgabe;
             document.getElementById("ek").innerHTML = ek;
