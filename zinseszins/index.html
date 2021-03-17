@@ -12,26 +12,27 @@
             var sk = parseFloat(document.getElementById("sk").value);
             var zs = parseFloat(document.getElementById("zs").value);
             var lauf = parseFloat(document.getElementById("lauf").value);
-            var ende = parseFloat(document.getElementById("ende").value);
+            var ende; 
  
             var gesamtkosten;
             var ek;
             var ausgabe = "";
+            
+            ek = sk * (1 + zs/100);
  
             ausgabe = ausgabe + "<table border=1>";
-            ausgabe = ausgabe + "<tr><th>Jahr</th><th>Kapital am 1.1.</th><th>Kapital am 31.12.</th></tr>";
+            ausgabe = ausgabe + "<tr><th>Jahr</th><th>Kapital am 1.1.</th><th>Zinsen</th><th>Kapital am 31.12.</th></tr>";
+            
  
             while (sk <= ende) {
                 zs = sk * zs / 100;
                 gesamtkosten = sk + zs;
                 ausgabe = ausgabe + "<tr><td>" + lauf + "</td><td>" + sk +  "</td><td>" + zs +  "</td><td>" + gesamtkosten +"</td></tr>";
-                lauf = lauf ++ ;
+                lauf ++ ;
             }
  
             ausgabe = ausgabe + "</table>";
-            
-            ek = sk * (1 + zs/100);
-            
+           
             document.getElementById("ausgabe").innerHTML = ausgabe;
             document.getElementById("ek").innerHTML = ek;
  
@@ -49,7 +50,6 @@
     Laufzeit in Jahre: <input id="lauf" type="text" value="0"><br>
  
     <button onclick="rechne()">Berechnung</button><br><br>
-    Endkapital in €: <div id="ek"></div><br>
     <div id="ausgabe">Bitte auf den Button zur Ausgabe klicken.</div>
  
         
