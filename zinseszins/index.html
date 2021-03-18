@@ -6,52 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zinseszinsrechner</title>
  
-    <script>
-        function rechne() {
-            
-            var sk = parseFloat(document.getElementById("sk").value);
-            var zs = parseFloat(document.getElementById("zs").value);
-            var lauf = parseFloat(document.getElementById("lauf").value);
-            var ende; 
- 
-            var gesamtkosten;
-            var ek;
-            var ausgabe = "";
-            
-            ek = sk * (1 + zs/100);
- 
-            ausgabe = ausgabe + "<table border=1>";
-            ausgabe = ausgabe + "<tr><th>Jahr</th><th>Kapital am 1.1.</th><th>Zinsen</th><th>Kapital am 31.12.</th></tr>";
-            
- 
-            while (sk <= ende) {
-                zs = sk * zs / 100;
-                gesamtkosten = sk + zs;
-                ausgabe = ausgabe + "<tr><td>" + lauf + "</td><td>" + sk +  "</td><td>" + zs +  "</td><td>" + gesamtkosten +"</td></tr>";
-                lauf ++ ;
-            }
- 
-            ausgabe = ausgabe + "</table>";
-           
-            document.getElementById("ausgabe").innerHTML = ausgabe;
-            document.getElementById("ek").innerHTML = ek;
- 
-        }
-    </script>
- 
-</head>
- 
-<body>
-    
+    <script>function fEuro(number) {
+               return number;
+          }
+          
+          
+          function fRechner() {
+               var vZs = parseFloat(document.getElementById("idZs").value);
+               var vSk = parseFloat(document.getElementById("idSk").value);
+               var vLz = parseFloat(document.getElementById("idLz").value);
+               
+               var vZf = 1 + vZs / 100;
+               var vEk = vSk * Math.pow(vZf, vLz);
+               
+               var vZinsen;
+               var vKJE;
+               
+               var vJahr = 0;
+               var vKJA = vSk;
+
+               var vAusgabe = "";
+               vAusgabe = vAusgabe + "Das Endkapital beträgt " + fEuro(vEk) + ".<br><br>";
+               
+               vAusgabe = vAusgabe + "<table border=1>";
+               vAusgabe = vAusgabe + "<tr><th>Jahr</th><th>Kapital am 1.1.</th><th>Zinsen am 31.12.</th><th>Kapital am 31.12.</th></tr>";
+
+               while (vJahr <= vLz) {
+                    vZinsen = vKJA * (vZs / 100);
+                    vKJE = vKJA+ vZinsen;
+                    vAusgabe = vAusgabe + "<tr><td>" + vJahr + "</td><td>" + vKJA + "</td><td>" + vZinsen + "</td><td>" + vKJE + "</td></tr>";
+
+                    vKJA = vKJE;
+                    vJahr++;
+               }
+
+               vAusgabe = vAusgabe + "</table>";
+               document.getElementById("idAusgabe").innerHTML = vAusgabe;
+          } 
+          </script>
+    </head>
+
+
+    <body>
     <h1>Zinseszinsrechner</h1>
-    
-    Startkapital in €: <input id="sk" type="text" value="5"><br>
-    Zinssatz in %: <input id="zs" ="text" value="8"><br>
-    Laufzeit in Jahre: <input id="lauf" type="text" value="0"><br>
- 
-    <button onclick="rechne()">Berechnung</button><br><br>
-    <div id="ausgabe">Bitte auf den Button zur Ausgabe klicken.</div>
- 
-        
-</body>
+
+    Zinssatz: <input id="idZs" type="text" value="2">%<br>
+    Startkapital: <input id="idSk" type="text" value="1000">€<br>
+    Laufzeit: <input id="idLz" type="text" value="5"> Jahre<br><br>
+
+    <button onClick="fRechner()">Berechnen</button><br><br>
+
+    <div id="idAusgabe">Klicken Sie auf den Button Berechnen, damit hier eine Tabelle erscheint...</div>
+
+    </body>
 </html>
