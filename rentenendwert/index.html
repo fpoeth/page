@@ -1,62 +1,80 @@
 <html>
-	<head>
+    
+     <head>
+     <title>Nachschüssiger Rentenendwert - Fabienne Poeth</title>
+     <meta http-equiv="Conten-Type" content="text/html; charset=utf-8">
 
-		<title>Nachschüssige Rentenendwert</title>
+     <script>
 
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+          "use strict";
+     
+          function fEuro(number) {
 
-		<script>
+               return number.toFixed(2) + " €";
 
-			"use strict";
-      
-      function fRentenendwert() {
-				
-				var vZinssatz;
-				var vNRe;
-				var vLZ;
-				var vAusgabe = "";
-				var vStart=1;
-				
-				var Startkapital = document.getElementById("idStartkapital").value;
-				vNutzungsdauer = document.getElementById("idNutzen").value;
-				
-				vAusgabe = vAusgabe + "<table border=1>";
-				vAusgabe = vAusgabe + "<tr><th>Nutzungsjahr</th><th>Abschreibung</th><th>Restwert</th></tr>";
-				
-				vAbschreibung = vAnschaffung / vNutzungsdauer;
-				
-				while (vStart<=vNutzungsdauer){
-					
-					vRestwert = vStart * vAbschreibung - vAnschaffung;
-				
-					vAusgabe = vAusgabe+ "<td>"+vStart+"</td>" + "<td>"+vAbschreibung+"</td>" + "<td>"+vRestwert+"</td>";
-					
-				vStart++;
-				}			
-				
-				vAusgabe = vAusgabe + "</table>";
-				
-				document.getElementById("idAusgabe").innerHTML = vAusgabe;
-				
-			}
+          }
+          
+          function fRente() {
 
+               var vZs =     parseFloat(document.getElementById("idZinssatz").value);
+               var vRente =  parseFloat(document.getElementById("idRente").value);
+               var vLZ =     parseFloat(document.getElementById("idLaufzeit").value);
+               
+               var vZf = 1 + vZs / 100;
+               var vRentenendwert = vRente * (Math.pow(vZs, vLZ) -1) / (vZf -1);
+               
+               var vZinsen;
+               var vKJE;
+               
+               var vJahr = 0;
+               var vKJA = 0;
+               var vAusgabe = "";
+               vAusgabe = vAusgabe + "Das Endkapital beträgt " + fEuro(vRentenendwert) + ".<br><br>";
+               
+               vAusgabe = vAusgabe + "<table border=1>";
+               vAusgabe = vAusgabe + "<tr><th>Jahr</th><th>Kapital am 1.1.</th><th>Zinsen am 31.12.</th><th>Rente am 31.12</th><th>Kapital am 31.12.</th></tr>";
 
-		</script>
+               while (vJahr <= vLZ) {
 
-	</head>
+                    vZinsen = vKJA * (vZs / 100);
+                    vKJE = vKJA + vZinsen + vRente;
+                    
+                    if (vJahr == vLZ) {
 
+                         vAusgabe = vAusgabe + "<tr><td>" + vJahr + "</td><td>" + fEuro(vKJA) + "</td><td></td><td></td><td></td></tr>";
 
+                    } else {
 
-	<body>
+                         vAusgabe = vAusgabe + "<tr><td>" + vJahr + "</td><td>" + fEuro(vKJA) + "</td><td>" + fEuro(vZinsen) + "</td><td>" + fEuro(vRente) + "</td><td>" + fEuro(vKJE) + "</td></tr>";
 
-		<h1>Lineare Abschreibungen</h1>
-		
-		Anschaffungswert: <input id="idAnschaffung" type="text" value="150000" maxlength="100" size="5">in Euro<br><br>
-		Nutzungsdauer: <input id="idNutzen" type="text" value="6" maxlength="100" size="5">in Jahr<br><br>
-		<button onClick="fAbschreibung();">Lineare Abschreibung berechnen!</button>
-		<div id="idAusgabe"></div>
+                    }
 
-	</body>
+                    vKJA = vKJE;
+                    vJahr++;
+               }
+
+               vAusgabe = vAusgabe + "</table>";
+               document.getElementById("idAusgabe").innerHTML = vAusgabe;
+
+          } 
+
+          </script>
+
+    </head>
+
+    <body>
+
+        <h1>Nachschüssiger Rentenendwert </h1>
+
+        Zinssatz:       <input id="idZinssatz" type="text" value="2">%<br>
+        Nachschüssige Rente:   <input id="idRente" type="text" value="100">€<br>
+        Laufzeit:       <input id="idLaufzeit" type="text" value="5"> Jahre<br><br>
+
+        <button onClick="fRente()">Berechnen</button><br><br>
+
+        <div id="idAusgabe">Klicken Sie auf den Button Berechnen, damit hier eine Tabelle erscheint...</div>
+
+    </body>
 
 </html>
 
