@@ -17,11 +17,11 @@
           function fRente() {
 
                var vZs =     parseFloat(document.getElementById("idZinssatz").value);
-               var vRente =  parseFloat(document.getElementById("idRente").value);
+               var vR  =     parseFloat(document.getElementById("idRente").value);
                var vLZ =     parseFloat(document.getElementById("idLaufzeit").value);
                
                var vZf = 1 + vZs / 100;
-               var vRentenendwert = vRente * (Math.pow(vZs, vLZ) -1) / (vZf -1);
+               var vRentenendwert = vR * (Math.pow(vZs, vLZ) -1) / (vZf -1);
                
                var vZinsen;
                var vKJE;
@@ -37,7 +37,7 @@
                while (vJahr <= vLZ) {
 
                     vZinsen = vKJA * (vZs / 100);
-                    vKJE = vKJA + vZinsen + vRente;
+                    vKJE = vKJA + vZinsen + vR;
                     
                     if (vJahr == vLZ) {
 
@@ -45,7 +45,7 @@
 
                     } else {
 
-                         vAusgabe = vAusgabe + "<tr><td>" + vJahr + "</td><td>" + fEuro(vKJA) + "</td><td>" + fEuro(vZinsen) + "</td><td>" + fEuro(vRente) + "</td><td>" + fEuro(vKJE) + "</td></tr>";
+                         vAusgabe = vAusgabe + "<tr><td>" + vJahr + "</td><td>" + fEuro(vKJA) + "</td><td>" + fEuro(vZinsen) + "</td><td>" + fEuro(vR) + "</td><td>" + fEuro(vKJE) + "</td></tr>";
 
                     }
 
