@@ -1,0 +1,79 @@
+<html>
+    
+     <head>
+     <title>Nachschüssiger Rentenendwert - Fabienne Poeth</title>
+     <meta http-equiv="Conten-Type" content="text/html; charset=utf-8">
+
+     <script>
+
+          "use strict";
+     
+          function fEuro(number) {
+
+               return number.toFixed(2) + " €";
+
+          }
+          
+          function fRente() {
+
+               var vZs =     parseFloat(document.getElementById("idZinssatz").value);
+               var vRente =  parseFloat(document.getElementById("idRente").value);
+               var vLZ =     parseFloat(document.getElementById("idLaufzeit").value);
+               
+               var vZf = 1 + vZs / 100;
+               var vRentenendwert = vRente * (Math.pow(vZs, vLZ) -1) / (vZf -1);
+               
+               var vZinsen;
+               var vKJE;
+               
+               var vJahr = 0;
+               var vKJA = 0;
+               var vAusgabe = "";
+               vAusgabe = vAusgabe + "Das Endkapital beträgt " + fEuro(vRentenendwert) + ".<br><br>";
+               
+               vAusgabe = vAusgabe + "<table border=1>";
+               vAusgabe = vAusgabe + "<tr><th>Jahr</th><th>Kapital am 1.1.</th><th>Zinsen am 31.12.</th><th>Rente am 31.12</th><th>Kapital am 31.12.</th></tr>";
+
+               while (vJahr <= vLZ) {
+
+                    vZinsen = vKJA * (vZs / 100);
+                    vKJE = vKJA + vZinsen + vRente;
+                    
+                    if (vJahr == vLZ) {
+
+                         vAusgabe = vAusgabe + "<tr><td>" + vJahr + "</td><td>" + fEuro(vKJA) + "</td><td></td><td></td><td></td></tr>";
+
+                    } else {
+
+                         vAusgabe = vAusgabe + "<tr><td>" + vJahr + "</td><td>" + fEuro(vKJA) + "</td><td>" + fEuro(vZinsen) + "</td><td>" + fEuro(vRente) + "</td><td>" + fEuro(vKJE) + "</td></tr>";
+
+                    }
+
+                    vKJA = vKJE;
+                    vJahr++;
+               }
+
+               vAusgabe = vAusgabe + "</table>";
+               document.getElementById("idAusgabe").innerHTML = vAusgabe;
+
+          } 
+
+          </script>
+
+    </head>
+
+    <body>
+
+        <h1>Nachschüssiger Rentenendwert </h1>
+
+        Zinssatz:       <input id="idZinssatz" type="text" value="2">%<br>
+        Nachschüssige Rente:   <input id="idRente" type="text" value="100">€<br>
+        Laufzeit:       <input id="idLaufzeit" type="text" value="5"> Jahre<br><br>
+
+        <button onClick="fRente()">Berechnen</button><br><br>
+
+        <div id="idAusgabe">Klicken Sie auf den Button Berechnen, damit hier eine Tabelle erscheint...</div>
+
+    </body>
+
+</html>
